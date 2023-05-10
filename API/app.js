@@ -1,5 +1,11 @@
 const express = require('express')
+
 const userRouter = require('./routes/users.js')
+const eventRouter = require('./routes/event')
+const categoryRouter = require('./routes/category')
+const favoriteRouter = require('./routes/favorite')
+const friendshipRouter = require('./routes/friendship')
+
 const mariadb = require('mariadb')
 const bodyParser = require('body-parser');
 
@@ -20,4 +26,8 @@ const pool = mariadb.createPool({
 app.use(bodyParser.urlencoded({extended: true}))
     .use(bodyParser.json())
     .use(userRouter(pool))
+    .use(eventRouter(pool))
+    .use(categoryRouter(pool))
+    .use(favoriteRouter(pool))
+    .use(friendshipRouter(pool))
     .listen(process.env.PORT);
