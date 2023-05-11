@@ -34,11 +34,9 @@ module.exports = function (pool) {
         try {
             conn = await pool.getConnection();
             const bodyUser = req.body;
-            let test = Date.parse(req.body.birth_date);
-            console.log(test)
             console.log(bodyUser)
             const rows = await conn.query("INSERT INTO `user` (`id`, `email`, `password`, `firstname`, `lastname`, `birth_date`, `lat`, `lng`)" +
-                " VALUES (NULL,?,?,?,?,?,?)", Object.values(bodyUser));
+                " VALUES (NULL,?,?,?,?,?,?,?)", Object.values(bodyUser));
 
             res.send(JSON.stringify({
                 status: 200,
@@ -60,7 +58,7 @@ module.exports = function (pool) {
 
         try {
             conn = await pool.getConnection();
-            const rowCheckUser = await conn.query("SELECT * FROM user WHERE email = ?", req.body.email)
+            const rowCheckUser = await conn.query("SELECT * FROM user WHERE email = ? && password = ?", [req.body.email,req.body.password])
 
             res.send(JSON.stringify(rowCheckUser.length > 0 ? {
                 status: 200,

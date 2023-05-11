@@ -12,7 +12,7 @@ module.exports = function (pool) {
 
         try {
             conn = await pool.getConnection();
-            const rows = await conn.query(`SELECT * FROM event WHERE title="${req.params.name}"`);
+            const rows = await conn.query(`SELECT * FROM event WHERE title LIKE "${req.params.name}%"`);
             res.send(JSON.stringify({
                 status: 200,
                 data: rows
