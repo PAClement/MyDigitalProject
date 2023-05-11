@@ -12,7 +12,16 @@ module.exports = function (pool) {
 
         try {
             conn = await pool.getConnection();
-            const rows = await conn.query(`SELECT * FROM category`);
+            const rows = await conn.query(`SELECT category.id, category.name,category.description, photo.content  
+            FROM category LEFT JOIN photo on photo.id_category = category.id`);
+
+            rows.forEach(target => {
+
+                if(target.content != null ){
+                    target.content = `/img/category/${target.content}`
+                }
+            })
+
             res.send(JSON.stringify({
                 status: 200,
                 data: rows
