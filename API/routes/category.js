@@ -12,8 +12,7 @@ module.exports = function (pool) {
 
         try {
             conn = await pool.getConnection();
-            const rows = await conn.query(
-                `SELECT * FROM category`);
+            const rows = await conn.query(`SELECT * FROM category`);
             res.send(JSON.stringify({
                 status: 200,
                 data: rows

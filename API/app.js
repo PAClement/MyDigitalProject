@@ -5,6 +5,7 @@ const eventRouter = require('./routes/event')
 const categoryRouter = require('./routes/category')
 const favoriteRouter = require('./routes/favorite')
 const friendshipRouter = require('./routes/friendship')
+const imageRouter = require('./routes/img')
 
 const mariadb = require('mariadb')
 const bodyParser = require('body-parser');
@@ -30,4 +31,5 @@ app.use(bodyParser.urlencoded({extended: true}))
     .use(categoryRouter(pool))
     .use(favoriteRouter(pool))
     .use(friendshipRouter(pool))
+    .use(imageRouter(pool))
     .listen(process.env.PORT);
