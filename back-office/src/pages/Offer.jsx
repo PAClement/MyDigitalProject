@@ -5,9 +5,9 @@ import Navigation from '../components/Navigation';
 const Home = () => {
     return (
         <>
-                <Navigation />
+            <Navigation />
             <section className="home">
-                <h2>PAGE HOME</h2>
+                <h2>PAGE offer</h2>
             </section>
         </>
     );

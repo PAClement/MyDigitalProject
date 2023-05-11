@@ -1,3 +1,17 @@
+
+/*COMPONENTS*/
+
 @import "components/navigation";
+@import "components/button";
+
+/*PAGES*/
 @import "pages/home";
+@import "pages/clientInfo";
+@import "pages/historic";
+@import "pages/offer";
+@import "pages/setting";
+@import "pages/eventGestion";
+
+
+//---------------------
 @import "setting";

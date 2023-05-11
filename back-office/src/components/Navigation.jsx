@@ -1,5 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import Button from "./Button";
 
 const Navigation = () => {
 
@@ -9,16 +10,14 @@ const Navigation = () => {
                 <header>
                     <div className="image-text">
                         <span className="image">
-                            <img className="mr-3" src="img/logo.png" alt=""/>
+                            <img className="mr-3" src="img/logo.png" alt="Logo"/>
                         </span>
-                        <div className="text logo-text">
-                            <span className="name">EXEO</span>
-                        </div>
                     </div>
                 </header>
+
                 <div className="menu-bar">
                     <div className="menu">
-                        <button>Ajouter une évènement</button>
+                        <Button />
                         <ul className="menu-links">
                             <li className="nav-link">
                                 <NavLink to='/' className={({isActive}) => (isActive ? 'nav-active' : '')}>
@@ -29,40 +28,40 @@ const Navigation = () => {
                                 </NavLink>
                             </li>
                             <li className="nav-link">
-                                <NavLink to='/account' className={({isActive}) => (isActive ? 'nav-active' : '')}>
-                                    <i className='bx bx-calendar-check icon'></>
+                                <NavLink to='/gestion_evenement' className={({isActive}) => (isActive ? 'nav-active' : '')}>
+                                    <i className='bx bx-calendar-check icon'></i>
                                     <span className="text nav-text">
                                         Gestion évènements
                                     </span>
                                 </NavLink>
                             </li>
                             <li className="nav-link">
-                                <NavLink to='/message' className={({isActive}) => (isActive ? 'nav-active' : '')}>
-                                    <i className='bx bx-message-alt-detail icon'></i>
+                                <NavLink to='/historique' className={({isActive}) => (isActive ? 'nav-active' : '')}>
+                                    <i className='bx bxs-time-five icon'></i>
                                     <span className="text nav-text">
                                         Historique
                                     </span>
                                 </NavLink>
                             </li>
                             <li className="nav-link">
-                                <NavLink to='/message' className={({isActive}) => (isActive ? 'nav-active' : '')}>
-                                    <i className='bx bx-message-alt-detail icon'></i>
+                                <NavLink to='/offre' className={({isActive}) => (isActive ? 'nav-active' : '')}>
+                                    <i className='bx bxs-dollar-circle icon'></i>
                                     <span className="text nav-text">
                                         Créer une offre
                                     </span>
                                 </NavLink>
                             </li>
                             <li className="nav-link">
-                                <NavLink to='/message' className={({isActive}) => (isActive ? 'nav-active' : '')}>
-                                    <i className='bx bx-message-alt-detail icon'></i>
+                                <NavLink to='/info_client' className={({isActive}) => (isActive ? 'nav-active' : '')}>
+                                    <i className='bx bxs-info-circle icon'></i>
                                     <span className="text nav-text">
                                         Info client
                                     </span>
                                 </NavLink>
                             </li>
                             <li className="nav-link">
-                                <NavLink to='/message' className={({isActive}) => (isActive ? 'nav-active' : '')}>
-                                    <i className='bx bx-message-alt-detail icon'></i>
+                                <NavLink to='/parametre' className={({isActive}) => (isActive ? 'nav-active' : '')}>
+                                    <i className='bx bxs-cog icon'></i>
                                     <span className="text nav-text">
                                         Paramètre
                                     </span>
