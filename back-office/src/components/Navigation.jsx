@@ -17,7 +17,7 @@ const Navigation = () => {
 
                 <div className="menu-bar">
                     <div className="menu">
-                        <Button />
+                        <Button name="Ajouter un evenement" icon="bx bx-plus"/>
                         <ul className="menu-links">
                             <li className="nav-link">
                                 <NavLink to='/' className={({isActive}) => (isActive ? 'nav-active' : '')}>

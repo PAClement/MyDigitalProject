@@ -1,10 +1,13 @@
 import React from 'react';
 
-const Button = () => {
+const Button = (props) => {
 
     return (
         <>
-            <button>Ajouter un evenement</button>
+            <button className="globalButton">
+                <i className={props.icon}></i>
+                <span>{props.name}</span>
+            </button>
         </>
     );
 };
