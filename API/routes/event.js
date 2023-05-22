@@ -106,5 +106,26 @@ module.exports = function (pool) {
         }
     })
 
+    /**
+     * Retrieve ALL event by company ID
+     * */
+    eventRouter.get("/event/company/:id", async function (req, res) {
+
+        let conn;
+
+        try {
+            conn = await pool.getConnection();
+            const rows = await conn.query(`SELECT * FROM event WHERE id_category = "${req.params.id}}"`);
+            res.send(JSON.stringify({
+                status: 200,
+                data: rows
+            }));
+        } catch (e) {
+            res.send(e)
+        } finally {
+            if (conn) await conn.release(); // Libère la connexion après chaque requête
+        }
+    })
+
     return eventRouter;
 }

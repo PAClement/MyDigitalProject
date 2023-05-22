@@ -5,8 +5,8 @@ const Button = (props) => {
     return (
         <>
             <button className="globalButton">
-                <i className={props.icon}></i>
                 <span>{props.name}</span>
+                <i className={props.icon}></i>
             </button>
         </>
     );

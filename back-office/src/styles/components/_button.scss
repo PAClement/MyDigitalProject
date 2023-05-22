@@ -5,16 +5,13 @@
   border: 2px solid var(--blue-color);
   border-radius: 8px;
   font-size: 15px;
-  padding: 4% 10%;
+  padding: 10px 30px;
   cursor: pointer;
   color: var(--blue-color) ;
+  display: flex;
 }
 
 .globalButton:hover{
   background:var(--blue-color) ;
   color: #202020;
-}
-
-.globalButton span{
-  margin-left: 10px;
 }
