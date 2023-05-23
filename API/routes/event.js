@@ -25,6 +25,27 @@ module.exports = function (pool) {
     })
 
     /**
+     * Retrieve event by id
+     * */
+    eventRouter.get("/event/byId/:id", async function (req, res) {
+
+        let conn;
+
+        try {
+            conn = await pool.getConnection();
+            const rows = await conn.query(`SELECT * FROM event WHERE id = "${req.params.id}"`);
+            res.send(JSON.stringify({
+                status: 200,
+                data: rows
+            }));
+        } catch (e) {
+            res.send(e)
+        } finally {
+            if (conn) await conn.release(); // Libère la connexion après chaque requête
+        }
+    })
+
+    /**
      * Retrieve all event
      * */
     eventRouter.get("/event", async function (req, res) {
