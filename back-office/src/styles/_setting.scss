@@ -16,13 +16,16 @@
   box-sizing: border-box;
 }
 
+body{
+  background-color: var(--body-color);
+}
+
 .home{
   position: absolute;
   top: 0;
   left: 250px;
   height: 100vh;
   width: calc(100% - 250px);
-  background-color: var(--body-color);
   padding: 12px 60px 12px 110px;
 
 }
