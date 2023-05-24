@@ -24,5 +24,30 @@ module.exports = function (pool) {
         }
     })
 
+    /**
+     * Route connexion
+     * */
+    companyEvent.post("/company/connection", async function (req, res) {
+
+        let conn;
+
+        try {
+            conn = await pool.getConnection();
+            const rowCheckUser = await conn.query("SELECT * FROM company WHERE email = ? && password = ?", [req.body.email, req.body.password])
+
+            res.send(JSON.stringify(rowCheckUser.length > 0 ? {
+                status: 200,
+                data: rowCheckUser
+            } : {
+                status: 201,
+                data: null
+            }));
+        } catch (e) {
+            res.send(e);
+        } finally {
+            if (conn) await conn.release(); // Libère la connexion après chaque requête
+        }
+    })
+
     return companyEvent;
 }

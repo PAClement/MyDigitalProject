@@ -83,5 +83,91 @@ module.exports = function (pool) {
         }
     })
 
+    /**
+     * ADD user like event
+     * */
+    favoriteRouter.get("/addUserLIKE/:userID/:eventID", async function(req, res){
+        let conn;
+
+        try {
+            conn = await pool.getConnection();
+            const rows = await conn.query(
+                `INSERT INTO \`favorite\`(\`id\`, \`id_user_fav\`, \`id_event\`, \`type_fav\`)
+                        VALUES (null,${req.params.userID},${req.params.eventID},'LIKE')`);
+            res.send(JSON.stringify({
+                status: 200,
+                data: rows
+            }));
+        } catch (e) {
+            res.send(e)
+        } finally {
+            if (conn) await conn.release(); // Libère la connexion après chaque requête
+        }
+    })
+
+    /**
+     * DELETE user like event
+     * */
+    favoriteRouter.delete("/deleteUserLIKE/:userID/:eventID", async function(req, res){
+        let conn;
+
+        try {
+            conn = await pool.getConnection();
+            const rows = await conn.query(
+                `DELETE FROM \`favorite\` WHERE \`id_user_fav\` = ${req.params.userID} && \`id_event\` = ${req.params.userID} && \`type_fav\` = 'LIKE'`);
+            res.send(JSON.stringify({
+                status: 200,
+                data: rows
+            }));
+        } catch (e) {
+            res.send(e)
+        } finally {
+            if (conn) await conn.release(); // Libère la connexion après chaque requête
+        }
+    })
+
+    /**
+     * ADD user FAV event
+     * */
+    favoriteRouter.get("/addUserFAV/:userID/:eventID", async function(req, res){
+        let conn;
+
+        try {
+            conn = await pool.getConnection();
+            const rows = await conn.query(
+                `INSERT INTO \`favorite\`(\`id\`, \`id_user_fav\`, \`id_event\`, \`type_fav\`)
+                        VALUES (null,${req.params.userID},${req.params.eventID},'FAV')`);
+            res.send(JSON.stringify({
+                status: 200,
+                data: rows
+            }));
+        } catch (e) {
+            res.send(e)
+        } finally {
+            if (conn) await conn.release(); // Libère la connexion après chaque requête
+        }
+    })
+
+    /**
+     * DELETE user FAV event
+     * */
+    favoriteRouter.delete("/deleteUserFAV/:userID/:eventID", async function(req, res){
+        let conn;
+
+        try {
+            conn = await pool.getConnection();
+            const rows = await conn.query(
+                `DELETE FROM \`favorite\` WHERE \`id_user_fav\` = ${req.params.userID} && \`id_event\` = ${req.params.userID} && \`type_fav\` = 'FAV'`);
+            res.send(JSON.stringify({
+                status: 200,
+                data: rows
+            }));
+        } catch (e) {
+            res.send(e)
+        } finally {
+            if (conn) await conn.release(); // Libère la connexion après chaque requête
+        }
+    })
+
     return favoriteRouter;
 }

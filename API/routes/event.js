@@ -148,5 +148,85 @@ module.exports = function (pool) {
         }
     })
 
+    /**
+     * Create Event
+     * */
+    eventRouter.post("/event/create", async function(req, res){
+
+        let conn;
+
+        try {
+            conn = await pool.getConnection();
+            let bodyEvent = req.body
+
+            const rows = await conn.query(`
+                INSERT INTO \`event\`
+                (\`id\`, \`start_date\`, \`end_date\`, \`title\`, \`subtitle\`, 
+                \`description\`, \`id_company\`, \`id_category\`, \`lat\`, \`lng\`) 
+                VALUES (null,?,?,?,?,?,?,?,?,?)
+            `, Object.values(bodyEvent));
+
+            res.send(JSON.stringify({
+                status: 200,
+                data: rows
+            }));
+        } catch (e) {
+            res.send(e)
+        } finally {
+            if (conn) await conn.release(); // Libère la connexion après chaque requête
+        }
+    })
+
+    /**
+     * Update Event
+     * */
+    eventRouter.put("/event/edit", async function(req, res){
+
+        let conn;
+
+        try {
+            conn = await pool.getConnection();
+
+            const rows = await conn.query(`
+                UPDATE \`event\` SET \`start_date\`='${req.body.start_date}',\`end_date\`='${req.body.end_date}',\`title\`='${req.body.title}',
+                \`subtitle\`='${req.body.subtitle}',\`description\`='${req.body.description}',\`id_company\`=${req.body.id_company},\`id_category\`=${req.body.id_category},
+                \`lat\`=${req.body.lat},\`lng\`=${req.body.lng} WHERE id = ${req.body.id}
+            `);
+
+            res.send(JSON.stringify({
+                status: 200,
+                data: rows
+            }));
+        } catch (e) {
+            res.send(e)
+        } finally {
+            if (conn) await conn.release(); // Libère la connexion après chaque requête
+        }
+    })
+
+    /**
+     * Delete Event
+     * */
+    eventRouter.delete("/event/delete/:eventID", async function(req, res){
+
+        let conn;
+
+        try {
+            conn = await pool.getConnection();
+
+            const rows = await conn.query(`
+             DELETE FROM \`event\` WHERE \`id\` = ${req.params.eventID}`);
+
+            res.send(JSON.stringify({
+                status: 200,
+                data: rows
+            }));
+        } catch (e) {
+            res.send(e)
+        } finally {
+            if (conn) await conn.release(); // Libère la connexion après chaque requête
+        }
+    })
+
     return eventRouter;
 }

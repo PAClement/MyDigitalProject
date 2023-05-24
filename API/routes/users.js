@@ -58,7 +58,7 @@ module.exports = function (pool) {
 
         try {
             conn = await pool.getConnection();
-            const rowCheckUser = await conn.query("SELECT * FROM user WHERE email = ? && password = ?", [req.body.email,req.body.password])
+            const rowCheckUser = await conn.query("SELECT * FROM user WHERE email = ? && password = ?", [req.body.email, req.body.password])
 
             res.send(JSON.stringify(rowCheckUser.length > 0 ? {
                 status: 200,
@@ -74,6 +74,45 @@ module.exports = function (pool) {
         }
     })
 
+    userRouter.put('/editUser', async function (req, res) {
+
+        let conn;
+
+        try {
+            conn = await pool.getConnection();
+            const bodyUser = req.body;
+            const rows = await conn.query(`UPDATE user SET firstname="${bodyUser.firstname}",lastname="${bodyUser.lastname}" WHERE id = "${bodyUser.id}"`);
+
+            res.send(JSON.stringify({
+                status: 200,
+                data: rows
+            }));
+        } catch (e) {
+            res.send(e);
+        } finally {
+            if (conn) await conn.release(); // Libère la connexion après chaque requête
+        }
+    })
+
+    userRouter.put('/editUserPassword', async function (req, res) {
+
+        let conn;
+
+        try {
+            conn = await pool.getConnection();
+            const bodyUser = req.body;
+            const rows = await conn.query(`UPDATE user SET password="${bodyUser.password}" WHERE id = "${bodyUser.id}"`);
+
+            res.send(JSON.stringify({
+                status: 200,
+                data: rows
+            }));
+        } catch (e) {
+            res.send(e);
+        } finally {
+            if (conn) await conn.release(); // Libère la connexion après chaque requête
+        }
+    })
 
     return userRouter;
 }
