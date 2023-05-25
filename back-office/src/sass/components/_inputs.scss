@@ -3,3 +3,17 @@
 // ---------------------------------------------------------
 
 @use '../global' as *;
+
+input, textarea, select{
+  outline: none;
+  border-radius: 7px;
+  border: 1px solid #939393;
+  padding: 10px 15px;
+  background: #262831;
+  color: white;
+}
+
+.form-control, .form-control-description{
+  display: flex;
+  flex-direction: column;
+}

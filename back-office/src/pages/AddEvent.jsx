@@ -2,9 +2,11 @@ import React, {useEffect, useState} from 'react';
 import Navigation from "../components/Navigation";
 import axios from "axios";
 import Button from "../components/Button";
+import {useNavigate} from "react-router-dom";
 
 const AddEvent = () => {
 
+    let companyID =  localStorage.getItem('user')
     const [category, setCategory] = useState([]);
 
     const [title, setTitle] = useState("");
@@ -15,6 +17,10 @@ const AddEvent = () => {
     const [newcategory, setNewcategory] = useState("");
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
+
+    const [error, setError] = useState("")
+
+    const navigation = useNavigate();
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/category`)
@@ -28,12 +34,18 @@ const AddEvent = () => {
         })
     }, [])
 
+    const displayError = (errorMSG) => {
+        setError(errorMSG);
+
+        setTimeout(() => {
+            setError("");
+        }, 5000)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
         if(newcategory !== "Choisir category"){
-            let companyID =  localStorage.getItem('user')
-            console.log(companyID)
 
             axios.post(`${process.env.REACT_APP_API_URL}/event/create`, {
 
@@ -48,11 +60,12 @@ const AddEvent = () => {
                 lng: longitude
             }).then((res) => {
 
-                if (res.data.status === 200) {
+                if (res.status === 200) {
 
-
+                    navigation('/gestion_evenement');
                 } else {
 
+                    displayError("Une erreur est survenue");
                 }
 
             }).catch((error) => {
@@ -67,21 +80,28 @@ const AddEvent = () => {
             <Navigation/>
             <section className="home">
                 <h2>Ajout d'un événement</h2>
-                <form onSubmit={handleSubmit}>
+                <br/><br/>
+                {error &&
+                    <p className="errorConnexion">{error}</p>
+                }
+                <form onSubmit={handleSubmit} className={"addEvent"}>
                     <div className="form-control">
                         <label htmlFor="title">Title</label>
                         <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder={"Title"} id={"title"} type={"text"} />
                     </div>
+                    <br/>
                     <div className="form-control">
                         <label htmlFor="subtitle">Subtitile</label>
                         <input value={subtitle} onChange={(e) => setSubtitle(e.target.value)} placeholder={"Subtitile"} id={"subtitle"} type={"text"} />
                     </div>
+                    <br/>
                     <div className="form-control-description">
                         <label htmlFor="description">Description</label>
-                        <textarea value={description} onChange={(e) => setDescription(e.target.value)} id="description" cols="30" rows="10">
+                        <textarea value={description} onChange={(e) => setDescription(e.target.value)} id="description" cols="10" rows="5">
                         </textarea>
                     </div>
-                    <div>
+                    <br/>
+                    <div className="duoInput">
                         <div className="form-control">
                             <label htmlFor="start">Start Date</label>
                             <input value={start} onChange={(e) => setStart(e.target.value)} placeholder={"Start Date"} id={"start"} type={"date"} />
@@ -91,6 +111,7 @@ const AddEvent = () => {
                             <input value={end} onChange={(e) => setEnd(e.target.value)} placeholder={"End Date"} id={"end"} type={"date"} />
                         </div>
                     </div>
+                    <br/>
                     <div className="form-control">
                         <label htmlFor="category">Category</label>
                         <select value={newcategory} onChange={(e) => setNewcategory(e.target.value)}>
@@ -100,7 +121,8 @@ const AddEvent = () => {
                             ))}
                         </select>
                     </div>
-                    <div>
+                    <br/>
+                    <div className="duoInput">
                         <div className="form-control">
                             <label htmlFor="latitude">Latitude</label>
                             <input value={latitude} onChange={(e) => setLatitude(e.target.value)} placeholder={"Latitude"} id={"latitude"} type={"text"} />
@@ -110,6 +132,7 @@ const AddEvent = () => {
                             <input value={longitude} onChange={(e) => setLongitude(e.target.value)} placeholder={"Longitude"} id={"longitude"} type={"text"} />
                         </div>
                     </div>
+                    <br/>
                     <Button
                         name="Ajouter Event"
                         icon="bx bx-edit-alt"

@@ -152,7 +152,7 @@ module.exports = function (pool) {
 
         try {
             conn = await pool.getConnection();
-            const rows = await conn.query(`SELECT * FROM event WHERE id_category = "${req.params.id}}"`);
+            const rows = await conn.query(`SELECT * FROM event WHERE id_company = ${req.params.id}`);
             res.send(JSON.stringify({
                 status: 200,
                 data: rows

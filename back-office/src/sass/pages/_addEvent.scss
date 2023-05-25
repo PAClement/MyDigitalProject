@@ -1,0 +1,11 @@
+@use '../global' as *;
+
+form.addEvent {
+  .duoInput {
+    display: flex;
+    gap: 10px;
+    div{
+      width: 100%;
+    }
+  }
+}

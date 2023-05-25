@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import Button from "../components/Button";
 
 const Authentification = () => {
 
@@ -46,8 +47,10 @@ const Authentification = () => {
     }
 
     return (
-        <div>
-            <img className="mr-3" src="img/logo.png" alt="Logo"/>
+        <div className={"authentification"}>
+            <div className={"authCenter"}>
+                <img className="mr-3" src="img/logo.png" alt="Logo"/>
+            </div>
             <h1>Connexion</h1>
             {error &&
                 <p className="errorConnexion">{error}</p>
@@ -58,13 +61,17 @@ const Authentification = () => {
                     <input placeholder={"societe@mail.fr"} value={email} onChange={(e) => setEmail(e.target.value)}
                            className="connexionInput" type={"email"}/>
                 </div>
+                <br/>
                 <div className="form-control">
                     <label>Votre password</label>
                     <input placeholder={"Mot de passe"} value={password} onChange={(e) => setPassword(e.target.value)}
                            className="passwordInput" type={"password"}/>
                     <small>Mot de passe oublié?</small>
                 </div>
-                <button type={"submit"}>Se connecter</button>
+                <br/>
+                <div className={"authCenter"}>
+                    <button className={`btn outlined secondary`} type={"submit"}>Se connecter</button>
+                </div>
             </form>
         </div>
     );

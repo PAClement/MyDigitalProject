@@ -6,11 +6,13 @@ import axios from "axios";
 import Button from "../components/Button";
 
 const Home = () => {
+    let companyID =  parseInt(localStorage.getItem('user'))
+
     const [events, setEvents] = useState([])
     const [eventById, setEventById] = useState()
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/event/company/1`)
+        axios.get(`${process.env.REACT_APP_API_URL}/event/company/101`)
             .then((res) => {
 
                 setEvents(res.data.data)
