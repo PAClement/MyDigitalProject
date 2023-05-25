@@ -8,6 +8,7 @@ import Button from "../components/Button";
 const Home = () => {
     let companyID =  parseInt(localStorage.getItem('user'))
 
+    const [error, setError] = useState("");
     const [events, setEvents] = useState([])
     const [eventById, setEventById] = useState()
 
@@ -40,6 +41,31 @@ const Home = () => {
        return dateFormat.getHours() + ":" + dateFormat.getMinutes() + ", "+ dateFormat.toDateString();
     }
 
+    const displayError = (errorMSG) => {
+        setError(errorMSG);
+
+        setTimeout(() => {
+            setError("");
+        }, 5000)
+    }
+
+    const deleteEvent = (eventID) => {
+        axios.delete(`${process.env.REACT_APP_API_URL}/event/delete/${eventID}`)
+            .then((res) => {
+
+                if(res.status !== 200){
+
+                }else{
+
+                    displayError("Une erreur est survenue lors de la suppression");
+                }
+
+            }).catch((error) => {
+
+            console.log(error);
+        })
+    }
+
     return (
         <>
             <Navigation />
@@ -54,11 +80,15 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="show-event">
+                    {error &&
+                        <p className="errorConnexion">{error}</p>
+                    }
                     {eventById != null ?(
                         <>
                             <div>
                                 <h2>{eventById.title}</h2>
                                 <Button name="Modifier" icon="bx bxs-pencil"/>
+                                <button onClick={() => deleteEvent(eventById)}>Supprimer</button>
                             </div>
                             <h6>xx inscrit</h6>
 
