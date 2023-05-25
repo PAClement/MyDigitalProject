@@ -30,8 +30,7 @@ const Authentification = () => {
             if (res.data.status === 200) {
 
                 setError("");
-
-                localStorage.setItem('user', res.data.uuid);
+                localStorage.setItem('user', res.data.data[0].id);
                 navigation('/');
 
             } else {
