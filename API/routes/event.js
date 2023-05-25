@@ -75,7 +75,23 @@ module.exports = function (pool) {
 
         try {
             conn = await pool.getConnection();
-            const rows = await conn.query(`SELECT * FROM event ORDER BY start_date DESC LIMIT ${req.params.limit}`);
+            const rows = await conn.query(`
+                SELECT  
+                    e.id,
+                    e.start_date,
+                    e.end_date,
+                    e.title,
+                    e.subtitle,
+                    e.description,
+                    c.name as Category,
+                    comp.name as Company,
+                    e.lat,
+                    e.lng FROM event e
+                INNER JOIN category c ON
+                    c.id = e.id_category
+                INNER JOIN company comp ON
+                    comp.id = e.id_company 
+                ORDER BY start_date DESC LIMIT ${req.params.limit}`);
             res.send(JSON.stringify({
                 status: 200,
                 data: rows
