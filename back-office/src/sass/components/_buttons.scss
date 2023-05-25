@@ -5,7 +5,7 @@
 @use '../global' as *;
 
 .btn{
-    padding:  rem(16) rem(20);
+    padding:  rem(8) rem(42);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,6 +14,13 @@
     transition: all .2s ease-in-out;
     cursor: pointer;
     border-radius: rem(8);
+    border: none;
+    font-size: fontproperty('text', 'pMedium', 'size');
+    font-weight: fontproperty('text', 'pMedium', 'weight');
+
+    i{
+        font-size: rem(24);
+    }
 
     &.filled{
 
@@ -28,10 +35,11 @@
 
         &.secondary{
             background-color: color('secondary', 'normal');
-            color: color('text', 'light');
+            color: color('text', 'dark');
 
             &:hover{
-                background-color: color('secondary', 'light');
+                background-color: color('secondary', 'dark');
+                color: color('text', 'light');
             }
         }
 

@@ -1,0 +1,59 @@
+// ---------------------------------------------------------
+// Pages
+// ---------------------------------------------------------
+
+@use '../global' as *;
+
+.profil{
+    &-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &-logo{
+            display: flex;
+            align-items: center;
+            gap: rem(20);
+            color: color('text', 'light');
+            font-family: 'Rubik', sans-serif;
+            font-size: fontproperty('title', 'h2', 'size');
+            font-weight: fontproperty('title', 'h2', 'weight');
+
+            .img_logo{
+                width: rem(100);
+                height: rem(100);
+                border-radius: rem(50);
+            }
+        }
+    }
+
+    &-info{
+        display: flex;
+        flex-direction: column;
+        gap: rem(24);
+
+        .follow{
+            display: flex;
+            align-items: center;
+            gap: rem(8);
+
+            font-size: fontproperty('text', 'pSemiBold', 'size');
+            font-weight: fontproperty('text', 'pSemiBold', 'weight');
+
+            i{
+                font-size: rem(24);
+            }
+        }
+
+        .description{
+            display: flex;
+            flex-direction: column;
+            gap: rem(8);
+
+            &-title{
+                font-size: fontproperty('title', 'h4', 'size');
+                font-weight: 800;
+            }
+        }
+    }
+}

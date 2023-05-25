@@ -10,6 +10,7 @@ $colors: (
   ),
   secondary: (
     normal: #0fbbe9,
+    dark: #0d8ebd,
   ),
   background: (
     normal: #202020,
@@ -24,7 +25,7 @@ $colors: (
     light: #f6f5ff,
   ),
   other: (
-    red: #ff0000,
+    red: rgba(255, 57, 57, 1),
   ),
   btow: (
     1000: hsl(0, 0%, 3%),

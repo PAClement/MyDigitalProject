@@ -1,20 +1,19 @@
 @use 'functions' as *;
 
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai&family=Rubik&display=swap');
+
 $fonts: (
     title: (
-        d-h1Bold: (size: rem(64), weight: 700, lineHeight: auto),
-        d-h1Light: (size: rem(60), weight: 300, lineHeight: auto),
-        d-h1Subtext: (size: rem(20), weight: 500, lineHeight: rem(32)),
-        h2: (size: rem(32), weight: 700, lineHeight: auto),
-        h3: (size: rem(26), weight: 700, lineHeight: auto),
-        h4: (size: rem(18), weight: 600, lineHeight: auto),
-
-        m-h1Bold: (size: rem(50), weight: 700, lineHeight: auto),
+        h1: (size: rem(2), weight: 700, lineHeight: rem(38)),
+        h2: (size: rem(28), weight: 700, lineHeight: rem(32)),
+        h3: (size: rem(20), weight: 700, lineHeight: rem(24)),
+        h4: (size: rem(18), weight: 700, lineHeight: rem(23)),
     ),
     text: (
-        pSemiBold: (size: rem(18), weight: 600, lineHeight: rem(30)),
-        pRegular: (size: rem(16), weight: 500, lineHeight: rem(28)),
-        pSmall: (size: rem(12), weight: 500, lineHeight: rem(24)),
+        pBold: (size: rem(16), weight: 700, lineHeight: rem(22)),
+        pSemiBold: (size: rem(16), weight: 600, lineHeight: rem(22)),
+        pMedium: (size: rem(16), weight: 500, lineHeight: rem(22)),
+        pRegular: (size: rem(16), weight: 400, lineHeight: rem(22)),
     )
 );
 
