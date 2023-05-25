@@ -54,7 +54,7 @@ module.exports = function (pool) {
 
         try {
             conn = await pool.getConnection();
-            const rows = await conn.query(`SELECT * FROM event"`);
+            const rows = await conn.query(`SELECT * FROM event`);
             res.send(JSON.stringify({
                 status: 200,
                 data: rows
@@ -69,13 +69,13 @@ module.exports = function (pool) {
     /**
      * Retrieve latest event
      * */
-    eventRouter.get("/event/limit", async function (req, res) {
+    eventRouter.get("/event/limit/:limit", async function (req, res) {
 
         let conn;
 
         try {
             conn = await pool.getConnection();
-            const rows = await conn.query(`SELECT * FROM event ORDER BY start_date DESC LIMIT 5`);
+            const rows = await conn.query(`SELECT * FROM event ORDER BY start_date DESC LIMIT ${req.params.limit}`);
             res.send(JSON.stringify({
                 status: 200,
                 data: rows

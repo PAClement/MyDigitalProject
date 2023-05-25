@@ -1,15 +1,22 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import {NavLink, useNavigate} from 'react-router-dom';
 import Button from "./Button";
 
 const Navigation = () => {
+  
+  const navigation = useNavigate();
+
+  const logout = () => {
+      localStorage.removeItem('user');
+      navigation('/authentification');
+  }
+
   return (
     <>
       <nav className="sidebar ">
         <header className="sidebar-header">
           <img className="sidebar-header-logo" src="img/logo.png" alt="Logo" />
         </header>
-
         <div className="menu-bar">
           <ul className="menu-bar-menu">
             <li>
@@ -80,5 +87,4 @@ const Navigation = () => {
     </>
   );
 };
-
 export default Navigation;
