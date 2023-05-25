@@ -1,0 +1,23 @@
+@use 'functions' as *;
+
+$fonts: (
+    title: (
+        d-h1Bold: (size: rem(64), weight: 700, lineHeight: auto),
+        d-h1Light: (size: rem(60), weight: 300, lineHeight: auto),
+        d-h1Subtext: (size: rem(20), weight: 500, lineHeight: rem(32)),
+        h2: (size: rem(32), weight: 700, lineHeight: auto),
+        h3: (size: rem(26), weight: 700, lineHeight: auto),
+        h4: (size: rem(18), weight: 600, lineHeight: auto),
+
+        m-h1Bold: (size: rem(50), weight: 700, lineHeight: auto),
+    ),
+    text: (
+        pSemiBold: (size: rem(18), weight: 600, lineHeight: rem(30)),
+        pRegular: (size: rem(16), weight: 500, lineHeight: rem(28)),
+        pSmall: (size: rem(12), weight: 500, lineHeight: rem(24)),
+    )
+);
+
+@function fontproperty($font, $value: 0, $property: size) {
+    @return map-get(map-get($fonts, $font), $value, $property);
+}

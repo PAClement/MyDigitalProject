@@ -1,0 +1,14 @@
+// ---------------------------------------------------------
+// Main
+// ---------------------------------------------------------
+
+@use 'libs';
+@use 'layouts';
+@use 'components' as c;
+@use 'global' as *;
+@use 'pages';
+
+body{
+    background-color: color('background', 'normal');
+    min-height: 100vh;
+}

@@ -1,0 +1,83 @@
+// ---------------------------------------------------------
+// Components - BUTTONS
+// ---------------------------------------------------------
+
+@use '../global' as *;
+
+.btn{
+    padding:  rem(16) rem(20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(8);
+    width: fit-content;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+    border-radius: rem(8);
+
+    &.filled{
+
+        &.primary{
+            background-color: color('primary', 'normal');
+            color: color('text', 'light');
+
+            &:hover{
+                background-color: color('primary', 'light');
+            }
+        }
+
+        &.secondary{
+            background-color: color('secondary', 'normal');
+            color: color('text', 'light');
+
+            &:hover{
+                background-color: color('secondary', 'light');
+            }
+        }
+
+        &.other{
+            background-color: color('other', 'red');
+            color: color('text', 'light');
+
+            &:hover{
+                background-color: color('other', 'red');
+            }
+        }
+
+    }
+
+    &.outlined{
+            
+            &.primary{
+                background-color: transparent;
+                color: color('primary', 'normal');
+                border: 2px solid color('primary', 'normal');
+    
+                &:hover{
+                    background-color: color('primary', 'light');
+                }
+            }
+    
+            &.secondary{
+                background-color: transparent;
+                color: color('secondary', 'normal');
+                border: 2px solid color('secondary', 'normal');
+    
+                &:hover{
+                    background-color: color('secondary', 'normal');
+                    color: color('text', 'dark');
+                }
+            }
+    
+            &.other{
+                background-color: transparent;
+                color: color('other', 'red');
+                border: 2px solid color('other', 'red');
+    
+                &:hover{
+                    background-color: color('other', 'red');
+                }
+            }
+    
+    }
+}

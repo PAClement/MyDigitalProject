@@ -4,7 +4,7 @@ const Button = (props) => {
 
     return (
         <>
-            <button className="globalButton">
+            <button className={`btn ${props.type} ${props.color}`}>
                 <span>{props.name}</span>
                 <i className={props.icon}></i>
             </button>
