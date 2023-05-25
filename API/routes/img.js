@@ -13,5 +13,26 @@ module.exports = function (pool) {
         res.sendFile(imagePath);
     })
 
+    /**
+     * Retrieve Logo by idEvent
+     * */
+    imageRouter.get("/avatar/:idEvent", async function (req, res) {
+
+        let conn;
+
+        try {
+            conn = await pool.getConnection();
+            const rows = await conn.query(`SELECT id, content FROM photo WHERE id_event = ${req.params.idEvent} && type_photo = 'USER_LOGO'`);
+            res.send(JSON.stringify({
+                status: 200,
+                data: rows
+            }));
+        } catch (e) {
+            res.send(e)
+        } finally {
+            if (conn) await conn.release(); // Libère la connexion après chaque requête
+        }
+    })
+
     return imageRouter;
 }
