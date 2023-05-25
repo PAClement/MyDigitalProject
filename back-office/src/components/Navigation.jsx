@@ -20,7 +20,9 @@ const Navigation = () => {
         <div className="menu-bar">
           <ul className="menu-bar-menu">
             <li>
-              <Button name="Ajouter un évènement" type="outlined" color="secondary"  />
+              <NavLink to="/add_event">
+                <Button name="Ajouter un évènement" type="outlined" color="secondary"  />
+              </NavLink>
             </li>
             <li className="nav-link">
               <NavLink
@@ -52,8 +54,7 @@ const Navigation = () => {
             <li className="nav-link">
               <NavLink
                 to="/offre"
-                className={({ isActive }) => (isActive ? "nav-active" : "")}
-              >
+                className={({ isActive }) => (isActive ? "nav-active" : "")}>
                 <i className="bx bxs-dollar-circle icon"></i>
                 <span className="text nav-text">Créer une offre</span>
               </NavLink>
@@ -78,7 +79,7 @@ const Navigation = () => {
             </li>
           </ul>
 
-          <a href="#" className="menu-bar-bottom">
+          <a onClick={logout} className="menu-bar-bottom">
             <i className="bx bx-log-out icon"></i>
             <span className="text nav-text">Déconnexion</span>
           </a>

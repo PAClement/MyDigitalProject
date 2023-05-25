@@ -6,7 +6,10 @@ const AddEvent = () => {
         <>
             <Navigation/>
             <section className="home">
-                Ajout d'un event
+                <h2>Ajout d'un événement</h2>
+                <form>
+
+                </form>
             </section>
         </>
 )
