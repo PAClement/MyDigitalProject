@@ -75,7 +75,7 @@ module.exports = function (pool) {
 
         try {
             conn = await pool.getConnection();
-            const rows = await conn.query(`SELECT * FROM event ORDER BY start_date DESC LIMIT 5`);
+            const rows = await conn.query(`SELECT * FROM event ORDER BY start_date DESC LIMIT ${req.params.limit}`);
             res.send(JSON.stringify({
                 status: 200,
                 data: rows

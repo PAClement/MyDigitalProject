@@ -1,8 +1,15 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
 import Button from "./Button";
 
 const Navigation = () => {
+
+    const navigation = useNavigate();
+
+    const logout = () => {
+        localStorage.removeItem('user');
+        navigation('/authentification');
+    }
 
     return (
         <>
@@ -17,7 +24,9 @@ const Navigation = () => {
 
                 <div className="menu-bar">
                     <div className="menu">
-                        <Button name="Ajouter un evenement" icon="bx bx-plus"/>
+                        <NavLink to='/add_event'>
+                            <Button name="Ajouter un evenement" icon="bx bx-plus"/>
+                        </NavLink>
                         <ul className="menu-links">
                             <li className="nav-link">
                                 <NavLink to='/' className={({isActive}) => (isActive ? 'nav-active' : '')}>
@@ -71,7 +80,7 @@ const Navigation = () => {
                     </div>
                     <div className="bottom-content">
                         <li className="">
-                            <a href="#">
+                            <a onClick={logout}>
                                 <i className='bx bx-log-out icon'></i>
                                 <span className="text nav-text">Deconnexion</span>
                             </a>
