@@ -81,7 +81,7 @@ module.exports = function (pool) {
         try {
             conn = await pool.getConnection();
             const bodyUser = req.body;
-            const rows = await conn.query(`UPDATE user SET firstname="${bodyUser.firstname}",lastname="${bodyUser.lastname}" WHERE id = "${bodyUser.id}"`);
+            const rows = await conn.query(`UPDATE user SET pseudo=${bodyUser.pseudo} firstname="${bodyUser.firstname}",lastname="${bodyUser.lastname}" WHERE id = "${bodyUser.id}"`);
 
             res.send(JSON.stringify({
                 status: 200,
